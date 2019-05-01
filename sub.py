@@ -7,12 +7,14 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("test/#")
 
 def on_message(client, userdata, msg):
-    print(msg.topic + " " + str(msg.payload))
+    print("Read from topic: " + msg.topic + "- with payload / value : " + str(msg.payload))
 
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
-
-client.connect("localhost", 1883, 60)
-
-client.loop_forever()
+try:
+    client.connect("localhost", 1883, 60)
+    client.loop_forever()
+except:
+    print ("no local MQTT Broker found !")
+    print ("Start with bash command brew services start mosquitto")
