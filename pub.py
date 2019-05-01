@@ -15,8 +15,8 @@ client.connect("localhost", 1883, 60)
 client.loop_start()
 
 while True:
-    time.sleep(2)
+    time.sleep(1)
     # Randomnumber for Temp !
-    temp_random =  random.randint(1,42)
+    temp_random =  random.randint(1,100)
     print(temp_random)
     client.publish("test/temperature", temp_random)
